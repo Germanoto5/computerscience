@@ -25,16 +25,33 @@ public class ArrayLesson {
             int key = this.values[index];
             int previousIndex = index - 1;
 
-            // Mover elementos mayores a la derecha
             while (previousIndex >= 0 && this.values[previousIndex] > key) {
-                this.values[previousIndex + 1] = this.values[previousIndex]; // Desplazar hacia la derecha
-                previousIndex--; // Moverse a la izquierda
+                this.values[previousIndex + 1] = this.values[previousIndex]; 
+                previousIndex--; 
             }
-            // Insertar el key en su lugar correcto
             this.values[previousIndex + 1] = key;
         }
         System.out.println("--Array ordenado:--");
         System.out.println(toString());
+    }
+    public int binaryFinder(int numberToFind) {
+        int firstIndex = 0;
+        int lastIndex = this.values.length - 1;
+
+        while (firstIndex <= lastIndex) {
+            int indexMidleNumber = (lastIndex + firstIndex) / 2;
+
+            if (this.values[indexMidleNumber] == numberToFind) {
+                return indexMidleNumber; 
+            }
+
+            if (numberToFind < this.values[indexMidleNumber]) {
+                lastIndex = indexMidleNumber - 1; 
+            } else {
+                firstIndex = indexMidleNumber + 1; 
+            }
+        }
+        return -1;
     }
 
     public String toString() {
@@ -49,25 +66,5 @@ public class ArrayLesson {
         valuesToString = valuesToString + "]";
         return valuesToString;
     }
-
-    //e
-    public int binaryFinder(int numberToFind) {
-        int firstIndex = 0;
-        int lastIndex = this.values.length - 1;
-
-        while (firstIndex <= lastIndex) {
-            int indexMidleNumber = (lastIndex + firstIndex) / 2;
-
-            if (this.values[indexMidleNumber] == numberToFind) {
-                return indexMidleNumber; // Número encontrado
-            }
-
-            if (numberToFind < this.values[indexMidleNumber]) {
-                lastIndex = indexMidleNumber - 1; // Ajusta el límite superior
-            } else {
-                firstIndex = indexMidleNumber + 1; // Ajusta el límite inferior
-            }
-        }
-        return -1;
-    }
+    
 }
